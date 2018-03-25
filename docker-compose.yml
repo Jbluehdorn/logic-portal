@@ -1,0 +1,21 @@
+version: '3'
+services:
+  web:
+    image: cr.bcx.zone/bcx-docker/chassis/base:v1.7
+    volumes:
+      - .:/srv/www
+    ports:
+      - 80:80
+    environment:
+      PHP_ARTISAN_MIGRATE: 'false'
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - ./storage/app/mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+      MYSQL_DATABASE: portal
+      MYSQL_USER: portal
+      MYSQL_PASSWORD: secret

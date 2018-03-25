@@ -16,6 +16,6 @@ Route::get('/logout', 'Auth\Auth0IndexController@logout' )->name( 'logout' )->mi
 
 Route::get( '/auth0/callback', '\Auth0\Login\Auth0Controller@callback' )->name( 'auth0-callback' );
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+Route::middleware(['auth'])->group(function() {
+    Route::get('/', 'HomeController@index');
+});
